@@ -1,6 +1,6 @@
 # CSIT121-
 Where all my HTML work for this semester will go
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
