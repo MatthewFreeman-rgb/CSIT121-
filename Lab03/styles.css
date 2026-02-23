@@ -1,0 +1,50 @@
+/* Body Styling */
+body {
+    background-color: #f4f4f4;
+    color: #222244;
+    font-family: Arial, Verdana, sans-serif;
+    margin: 20px;
+}
+
+/* Headings */
+h1 {
+    color: #003366;
+}
+
+h2 {
+    color: #005599;
+}
+
+h3 {
+    color: #0077cc;
+}
+
+/* Paragraph Styling */
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Link Styling */
+a {
+    color: darkred;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ID Selector */
+#main-header {
+    border-bottom: 3px solid #003366;
+    padding-bottom: 10px;
+}
+
+/* Class Selector */
+.blog-post {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 6px solid #0077cc;
+}
