@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Reads the XML data using JavaScript</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            display: none;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #7ce2af;
+        }
+
+        th {
+            background-color: #7c0f65;
+            color: white;
+        }
+
+        .button {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            border: 4px solid rgb(55, 12, 211);
+            background: rgba(20, 192, 4, 0.5);
+            color: rgb(230, 36, 78);
+            border-radius: 30px;
+            font-size: 30px;
+            width: 500px;
+        }
+
+        .button:hover {
+            color: black;
+            background: white;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        /*
+        AI GENERATED CODE (Required Documentation)
+        Prompt: "Update JavaScript so the button toggles the employee table on and off and changes text between 'Get Employee Data' and 'Close Employee Data'."
+        AI Solution: Use a boolean variable (isVisible) to track state and update both table display and button text dynamically.
+        */
+
+        let isVisible = false;
+
+        function loadXMLDoc() {
+
+            let table = document.getElementById("id");
+            let button = document.getElementById("btn");
+
+            if (!isVisible) {
+
+                let xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        empDetails(this);
+                    }
+                };
+
+                xmlhttp.open("GET", "employee.xml", true);
+                xmlhttp.send();
+
+                table.style.display = "table";
+                button.innerText = "Close Employee Data";
+                isVisible = true;
+
+            } else {
+                table.style.display = "none";
+                button.innerText = "Get Employee Data";
+                isVisible = false;
+            }
+        }
+
+        function empDetails(xml) {
+
+            let i;
+            let xmlDoc = xml.responseXML;
+
+            let table =
+                `<tr><th>Firstname</th><th>Lastname</th>
+                <th>Title</th><th>Division</th>
+                <th>Building</th><th>Room</th></tr>`;
+
+            let x = xmlDoc.getElementsByTagName("employee");
+
+            for (i = 0; i < x.length; i++) {
+                table += "<tr><td>" +
+                    x[i].getElementsByTagName("firstname")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("lastname")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("division")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("building")[0].childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("room")[0].childNodes[0].nodeValue + "</td></tr>";
+            }
+
+            document.getElementById("id").innerHTML = table;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="center">
+        <button id="btn" class="button" onclick="loadXMLDoc()">
+            Get Employee Data
+        </button>
+    </div>
+
+    <br><br>
+
+    <table id="id"></table>
+
+</body>
+
+</html>
